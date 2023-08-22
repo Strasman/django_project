@@ -1,12 +1,20 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponsePermanentRedirect
 import datetime
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404, reverse, redirect
 from django.conf import settings
 from .models import Author, Tag, Category, Post
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.http import (HttpResponse, HttpResponseNotFound, 
+                        Http404, HttpResponseRedirect, HttpResponsePermanentRedirect)
 
 def index(request):
     return HttpResponse("Hello Django")
+
+
+def test_redirect(request):
+    #c = Category.objects.get(name='java')
+    #return redirect(c.get_absolute_url())
+    return redirect('post_list', permanent=True)
+
 
 
 # view function to display a list of posts
