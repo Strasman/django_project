@@ -5,6 +5,9 @@ from django.conf import settings
 from .models import Author, Tag, Category, Post
 from django.http import (HttpResponse, HttpResponseNotFound, 
                         Http404, HttpResponseRedirect, HttpResponsePermanentRedirect)
+from django.contrib import messages
+from .forms import FeedbackForm
+from django.core.mail import mail_admins
 
 def index(request):
     return HttpResponse("Hello Django")
@@ -58,6 +61,17 @@ def today_is(request):
                                 'now': now,
                                 'template_name': 'blog/nav.html',
                                 'base_dir': settings.BASE_DIR })
+
+def feedback(request):
+    if request.method == 'POST':
+        f = FeedbackForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.add_message(request, messages.INFO, 'Feedback Submitted.')
+            return redirect('feedback')
+    else:
+        f = FeedbackForm()
+    return render(request, 'blog/feedback.html', {'form': f})
 
 
 """""
