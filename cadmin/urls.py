@@ -17,6 +17,7 @@ urlpatterns = [
             success_url='password_change_done'  # Use the URL name for success_url
          ),
          name='password_change'),
+    path('register/', views.register, name = 'register'),
     path('post/add/', views.post_add, name = 'post_add'),
     path('post/update/<int:pk>/', views.post_update, name='post_update'),
 ]
