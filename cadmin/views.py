@@ -132,7 +132,8 @@ Please visit the following link to verify your account \n\n{0}://{1}/cadmin/acti
                         request.POST['username'],
                         request.POST['email'],
                         request.POST['password1'],
-                        is_active = 0
+                        is_active = 0,
+                        is_staff = True
                 )
 
                 author = Author()
