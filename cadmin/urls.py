@@ -18,6 +18,7 @@ urlpatterns = [
          ),
          name='password_change'),
     path('register/', views.register, name = 'register'),
+    path('activate/account/', views.activate_account, name = 'activate'),
     path('post/add/', views.post_add, name = 'post_add'),
     path('post/update/<int:pk>/', views.post_update, name='post_update'),
 ]
