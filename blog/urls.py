@@ -1,5 +1,6 @@
 from django.urls import path
 from blog import views
+from django.contrib.flatpages import views as flat_views
 
 urlpatterns = [
     path('time/', views.today_is, name='todays_time'),
@@ -20,6 +21,8 @@ urlpatterns = [
     path('login/', views.login, name='blog_login'),
     path('logout/', views.logout, name='blog_logout'),
     path('admin_page/', views.admin_page, name='admin_page'),
+    path('about/', flat_views.flatpage, {'url': '/about/'}, name='about'),
+    path('eula/', flat_views.flatpage, {'url': '/eula/'}, name='eula'),
     path('category/<slug:category_slug>/', views.post_by_category, name='post_by_category'),
     path('tag/<slug:tag_slug>/', views.post_by_tag, name='post_by_tag'),
     path('<int:pk>/<slug:post_slug>/', views.post_detail, name='post_detail'),

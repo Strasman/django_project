@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
+    'django.contrib.sites',
     'blog',
     'cadmin'
 ]
@@ -161,3 +163,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ## Updating default Login URL ##
 LOGIN_URL = 'login'
+
+SITE_ID = 1
