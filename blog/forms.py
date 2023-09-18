@@ -1,7 +1,9 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Author, Tag, Category, Post, Feedback
+from .models import Author, Tag, Category, Post, Feedback, Contact
 from django.template.defaultfilters import slugify
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class AuthorForm(forms.ModelForm):
     class Meta:
@@ -83,3 +85,16 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
         fields = '__all__'
+
+class ContactForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact 
+        fields = '__all__'  
+
+"""
+class RegistrationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'full_name')
+"""

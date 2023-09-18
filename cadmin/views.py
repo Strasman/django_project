@@ -104,6 +104,7 @@ def login(request, **kwargs):
     else:
         return auth_views.login(request, **kwargs)
     
+"""  With Email validation
 def register(request):
     if request.method == 'POST':
         f = CustomUserCreationForm(request.POST)
@@ -142,6 +143,33 @@ Please visit the following link to verify your account \n\n{0}://{1}/cadmin/acti
                 author.save()
 
             return redirect('register')
+
+    else:
+        f = CustomUserCreationForm()
+
+    return render(request, 'cadmin/register.html', {'form': f})
+"""
+
+def register(request):
+    if request.method == 'POST':
+        f = CustomUserCreationForm(request.POST)
+        if f.is_valid():
+            # Remove email-related code
+            u = User.objects.create_user(
+                request.POST['username'],
+                request.POST['email'],
+                password=request.POST['password1'],
+                is_active=True,  # Activate the user immediately
+                is_staff=True
+            )
+
+            author = Author()
+            author.user = u
+            author.save()
+        
+            messages.success(request, 'Registration successful. You are now logged in.')
+            
+            return redirect('login')
 
     else:
         f = CustomUserCreationForm()

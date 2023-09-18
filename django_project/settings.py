@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-55g&rqt$n28r5h=^&lsjm44w(!o*$s&9!#kmnaggqos(q=vrt!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -169,6 +169,10 @@ LOGIN_URL = 'login'
 
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'auth.User'
+
+# AUTH_USER_MODEL = 'blog.CustomUser'
+
 ####################################
     ##  CKEDITOR CONFIGURATION ##
 ####################################
@@ -185,3 +189,4 @@ CKEDITOR_CONFIGS = {
 }
 
 ###################################
+

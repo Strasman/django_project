@@ -6,7 +6,7 @@ from .models import Author, Tag, Category, Post
 from django.http import (HttpResponse, HttpResponseNotFound, 
                         Http404, HttpResponseRedirect, HttpResponsePermanentRedirect)
 from django.contrib import messages
-from .forms import FeedbackForm
+from .forms import FeedbackForm, ContactForm
 from django.core.mail import mail_admins
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django_project import helpers
@@ -85,6 +85,23 @@ def feedback(request):
     else:
         f = FeedbackForm()
     return render(request, 'blog/feedback.html', {'form': f})
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['email']
+            recipients = ['admin@example.com']  # Replace with your contact form's recipient(s)
+            
+            mail_admins(subject, message, fail_silently=False, connection=None, html_message=None)
+            messages.success(request, 'Your message has been sent.')
+            form.save()
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})
 
 def test_cookie(request):   
     if not request.COOKIES.get('color'):
@@ -207,12 +224,27 @@ def logout(request):
     auth.logout(request)
     return render(request,'blog/logout.html')
 
+"""
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # To log in the user immediately after registration,
+            # add import auth and use auth.login(request, user)
+            return redirect('login')  
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'blog/register.html', {'form': form})
+"""
 
 def admin_page(request):
     if not request.user.is_authenticated:
         return redirect('blog_login')
 
     return render(request, 'blog/admin_page.html')
+
 
 """""
 def today_is(request):

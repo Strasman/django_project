@@ -14,10 +14,18 @@
         <div class="section-inner clearfix">
             <nav>
                 <a href="/">The Great Django Blog</a>
-                <a href="feedback/">Contact</a>
-                <a href="about/">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+                <a href="{% url 'about' %}">About</a>
              <!--   <a href="#">Career</a> -->
             </nav>
+            <div class="right-nav">
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'blog_login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                {% else %}
+                    <a href="{% url 'blog_logout' %}">Logout</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 

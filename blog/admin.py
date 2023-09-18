@@ -1,5 +1,6 @@
 from django.contrib import admin
 from . import models
+from django.contrib.auth import get_user_model
 
 # Register your models here.
 
@@ -39,9 +40,17 @@ class FeedbackAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email',)
     date_hierarchy = 'date'
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'phone', 'topic', 'date',)
+    search_fields = ('name', 'email', 'phone', 'topic',)
+    date_hierarchy = 'date'
+
+User = get_user_model()
 
 admin.site.register(models.Post, PostAdmin)
 admin.site.register(models.Category, CategoryAdmin)
 #admin.site.register(models.Author, AuthorAdmin)
 admin.site.register(models.Tag, TagAdmin)
 admin.site.register(models.Feedback, FeedbackAdmin)
+admin.site.register(models.Contact, ContactAdmin)
+"""admin.site.register(User)"""

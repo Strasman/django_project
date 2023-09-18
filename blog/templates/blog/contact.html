@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+    Contact - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="section-inner clearfix">
+            <h3>Submit Your Contact Information</h3>
+
+            {{ form.non_field_errors }}
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>{{ form.name.label_tag }}</td>
+                        <td>
+                            {{ form.name.errors }}
+                            {{ form.name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.email.label_tag }}</td>
+                        <td>
+                            {{ form.email.errors }}
+                            {{ form.email }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.phone.label_tag }}</td>
+                        <td>
+                            {{ form.phone.errors }}
+                            {{ form.phone }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.topic.label_tag }}</td>
+                        <td>
+                            {{ form.topic.errors }}
+                            {{ form.topic }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{ form.message.label_tag }}</td>
+                        <td>
+                            {{ form.message.errors }}
+                            {{ form.message }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

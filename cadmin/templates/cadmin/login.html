@@ -1,7 +1,10 @@
 {% extends "cadmin/base.html" %}
 
-{% block content %}
+{% block title %}
+    Login - {{ block.super }}
+{% endblock %}
 
+{% block content %}
     <div class="login">
         <h1>The Great Django Blog - Login</h1>
 

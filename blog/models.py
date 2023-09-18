@@ -1,9 +1,10 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import AbstractUser
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from django.contrib.auth.models import User
+#from django.conf import settings
 # Create your models here.
 
 
@@ -16,7 +17,10 @@ class Author(models.Model):
     email_validated = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        if self.user:
+            return self.user.username
+        else:
+            return "No User"
 
 
 class Category(models.Model):
@@ -78,3 +82,22 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.name + "-" +  self.email
+    
+class Contact(models.Model):
+    name = models.CharField(max_length=200, help_text="Name of the sender")
+    email = models.EmailField(max_length=200)
+    phone = models.CharField(max_length=20, blank=True, null=True, help_text="Phone number")
+    topic = models.CharField(max_length=200)
+    message = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Contact Information"
+
+    def __str__(self):
+        return f"{self.name} - {self.email}" 
+
+"""
+class CustomUser(AbstractUser):
+    full_name = models.CharField(max_length=255)
+"""

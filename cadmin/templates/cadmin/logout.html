@@ -1,9 +1,18 @@
-{% extends "cadmin/base.html" %}
+{% extends "base.html" %}
+
+{% block title %}
+    Logout - {{ block.super }}
+{% endblock %}
 
 {% block content %}
 
-<div class="logout">
-        <p>You have successfully logged out. <a href="{% url 'login' %}">Click</a> to login again.</p>
-</div>
+    <div class="content">
+        <div class="section-inner clearfix">
+
+            <h3>Logout</h3>
+
+            <p>You have been successfully logged out.</p>
+        </div>
+    </div>
 
 {% endblock %}

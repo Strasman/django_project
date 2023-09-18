@@ -30,7 +30,13 @@ p.info{
 
 .navbar{
     background-color: black;
-    text-align: center;
+    text-align: center; 
+}
+
+
+.right-nav {
+    float: right;
+    margin-top: 0; /* Add this to align the right-nav with the navbar */
 }
 
 .navbar a{
