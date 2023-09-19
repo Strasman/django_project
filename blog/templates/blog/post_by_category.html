@@ -18,10 +18,16 @@
         {% endfor %}
         </div>
     </div>
-    
     <div class="pagination">
         <div class="section-inner clearfix">
             <p>
+                <p>            
+                    {% if user.is_authenticated %}
+                    <span class="add-post-link">
+                        <a href="{% url 'post_add' %}">Add a New Post</a>
+                    </span>
+                    {% endif %}
+                </p>
                 {% if posts.has_previous %}
                     <a href="?page={{ posts.previous_page_number }}">&lt; Prev</a> |
                 {% endif %}

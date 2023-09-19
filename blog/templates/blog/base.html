@@ -18,11 +18,10 @@
                 <a href="{% url 'about' %}">About</a>
             </nav>
             <div class="right-nav">
-                {% if not user.is_authenticated %}
-                    <a href="{% url 'blog_login' %}">Login</a>
-                    <a href="{% url 'register' %}">Register</a>
+                {% if user.is_authenticated %}
+                    <span class="username">{{ user.username}} </span> | <a class="logout" href="{% url 'blog_logout' %}">Logout</a>
                 {% else %}
-                    <a href="{% url 'blog_logout' %}">Logout</a>
+                    <span class="username">Hello guest</span> | <a class="login-register" href="{% url 'blog_login' %}">Login</a> | <a class="login-register" href="{% url 'register' %}">Register</a>
                 {% endif %}
             </div>
         </div>
