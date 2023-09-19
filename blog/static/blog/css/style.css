@@ -37,11 +37,10 @@ p.info{
 .right-nav {
     float: right;
     margin-top: 0; 
-
 }
 
 /* Style for "Login" and "Register" */
-.right-nav .login-register {
+.right-nav a.login-register {
     color: black;
 }
 
