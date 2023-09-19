@@ -90,18 +90,39 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = form.cleaned_data['email']
-            recipients = ['admin@example.com']  # Replace with your contact form's recipient(s)
+            # Save the form data to the database
+            form.save()
             
-            mail_admins(subject, message, fail_silently=False, connection=None, html_message=None)
+            # Display a success message
+            messages.success(request, 'Your message has been sent.')
+
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    return render(request, 'blog/contact.html', {'form': form})
+
+"""" With sending an email 
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            sender = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            topic = form.cleaned_data['topic']
+            message = form.cleaned_data['message']
+            headline = "You've been contacted from {}:{}".format(name, sender)
+            msg_body = "Topic: {}\n\nMessage: {}\n\Phone: {}".format(topic, message,phone)
+            recipients = ['elad.strasman@gmail.com'] 
+            
+            mail_admins(headline, msg_body, fail_silently=False, connection=None, html_message=None)
             messages.success(request, 'Your message has been sent.')
             form.save()
             return redirect('contact')
     else:
         form = ContactForm()
     return render(request, 'blog/contact.html', {'form': form})
+"""
 
 def test_cookie(request):   
     if not request.COOKIES.get('color'):

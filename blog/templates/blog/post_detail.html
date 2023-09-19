@@ -10,7 +10,10 @@
             <h1>{{ post.title|capfirst }}</h1>
             <p class="post-info">
                 {% include 'blog/post_info.html' %}
-                | <span><a href="{% url 'post_update' post.id  %}">Edit</a></span>
+                
+                {% if user.is_authenticated and user == post.author.user %}
+                | <span><a href="{% url 'post_update' post.id %}">Edit</a></span>
+            {% endif %}
             </p>
             <p>
                 {{ post.content|safe }}

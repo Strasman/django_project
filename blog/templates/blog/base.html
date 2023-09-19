@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 </head>
-    <title>{% block title %}The Great Django Blog{% endblock %}</title>
+    <title>{% block title %}Elad's Django Blog{% endblock %}</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/css/reset.css' %}">
@@ -13,10 +13,9 @@
     <div class="navbar">
         <div class="section-inner clearfix">
             <nav>
-                <a href="/">The Great Django Blog</a>
+                <a href="/">Elad's Django Blog</a>
                 <a href="{% url 'contact' %}">Contact</a>
                 <a href="{% url 'about' %}">About</a>
-             <!--   <a href="#">Career</a> -->
             </nav>
             <div class="right-nav">
                 {% if not user.is_authenticated %}
@@ -38,7 +37,7 @@
     <div class="footer">
         <div class="section-inner clearfix">
             <hr>
-            <p>&copy; The Great Django Footer</p>
+            <p>&copy; Elad's Django Blog</p>
         </div>
     </div>
 
